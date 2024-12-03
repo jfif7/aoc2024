@@ -4,12 +4,7 @@ import (
 	"testing"
 )
 
-var example = `7 6 4 2 1
-1 2 7 8 9
-9 7 6 2 1
-1 3 2 4 5
-8 6 4 4 1
-1 3 6 7 9`
+var example = `xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))`
 
 func Test_part1(t *testing.T) {
 	tests := []struct {
@@ -20,7 +15,7 @@ func Test_part1(t *testing.T) {
 		{
 			name:  "example",
 			input: example,
-			want:  2,
+			want:  161,
 		},
 	}
 	for _, tt := range tests {
@@ -32,6 +27,8 @@ func Test_part1(t *testing.T) {
 	}
 }
 
+var example2 = `xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))`
+
 func Test_part2(t *testing.T) {
 	tests := []struct {
 		name  string
@@ -40,8 +37,8 @@ func Test_part2(t *testing.T) {
 	}{
 		{
 			name:  "example",
-			input: example,
-			want:  4,
+			input: example2,
+			want:  48,
 		},
 	}
 	for _, tt := range tests {
