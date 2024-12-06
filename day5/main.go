@@ -28,9 +28,9 @@ func main() {
 }
 
 func check_update(nums []string, rules map[string][]string) int {
-	history := make(map[string]int)
-	for i, num := range nums {
-		history[num] = i
+	history := make(map[string]bool)
+	for _, num := range nums {
+		history[num] = true
 		for _, back := range rules[num] {
 			if _, ok := history[back]; ok {
 				return 0
@@ -53,12 +53,14 @@ func check_update_fix(nums []string, rules map[string][]string) int {
 		history[num] = i
 		for _, back := range rules[num] {
 			if index, ok := history[back]; ok && index < i {
+				// Rewrites history and swap those numbers
 				nums[index] = nums[i]
 				nums[i] = back
 				history[back] = i
 				history[nums[index]] = index
+
 				swapped = true
-				i = index - 1
+				i = index - 1 // Redo the outer loop from i = index
 				break
 			}
 		}
