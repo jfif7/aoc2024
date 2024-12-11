@@ -4,19 +4,11 @@ import (
 	"testing"
 )
 
-var example = `0123
-1234
-8765
-9876`
+// 0..111....22222
+// 022111222
+var example_easy = `12345`
 
-var example_large = `89010123
-78121874
-87430965
-96549874
-45678903
-32019012
-01329801
-10456732`
+var example = `2333133121414131402`
 
 func Test_part1(t *testing.T) {
 	tests := []struct {
@@ -27,12 +19,12 @@ func Test_part1(t *testing.T) {
 		{
 			name:  "example",
 			input: example,
-			want:  1,
+			want:  1928,
 		},
 		{
-			name:  "example_large",
-			input: example_large,
-			want:  36,
+			name:  "example_easy",
+			input: example_easy,
+			want:  60,
 		},
 	}
 	for _, tt := range tests {
@@ -44,6 +36,8 @@ func Test_part1(t *testing.T) {
 	}
 }
 
+
+
 func Test_part2(t *testing.T) {
 	tests := []struct {
 		name  string
@@ -51,9 +45,14 @@ func Test_part2(t *testing.T) {
 		want  int64
 	}{
 		{
-			name:  "example_large",
-			input: example_large,
-			want:  81,
+			name:  "example",
+			input: example,
+			want:  2858,
+		},
+		{
+			name:"example_easy",
+			input: example_easy,
+			want: 132,
 		},
 	}
 	for _, tt := range tests {
