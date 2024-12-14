@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func ReadImputAsBoard(s string) (n, m int, board [][]rune) {
+func ReadInputAsBoard(s string) (n, m int, board [][]rune) {
 	lines := strings.Split(s, "\n")
 	board = make([][]rune, len(lines))
 	for i, line := range lines {
