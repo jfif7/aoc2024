@@ -17,3 +17,35 @@ func ReadInputAsBoard(s string) (n, m int, board [][]rune) {
 	n, m = len(board), len(board[0])
 	return
 }
+
+type DisjointSet struct {
+	arr []int
+}
+
+func (ds *DisjointSet) Init(size int) {
+	ds.arr = make([]int, size)
+	for i := range ds.arr {
+		ds.arr[i] = i
+	}
+}
+
+func (ds *DisjointSet) Join(a, b int) {
+	ra := ds.Root(a)
+	rb := ds.Root(b)
+	ds.arr[ra] = rb
+}
+
+func (ds *DisjointSet) Root(a int) int {
+	if ds.arr[a] == a {
+		return a
+	}
+	root := ds.Root(ds.arr[a])
+	ds.arr[a] = root
+	return root
+}
+
+func (ds *DisjointSet) Same(a, b int) bool {
+	ra := ds.Root(a)
+	rb := ds.Root(b)
+	return ra == rb
+}
