@@ -18,6 +18,29 @@ func ReadInputAsBoard(s string) (n, m int, board [][]rune) {
 	return
 }
 
+func ReadInputAsBoardAddWall(s string, wall rune) (n, m int, board [][]rune) {
+	lines := strings.Split(s, "\n")
+	board = make([][]rune, len(lines)+2)
+	for i, line := range lines {
+		board[i+1] = make([]rune, len(line)+2)
+		for j, r := range line {
+			board[i+1][j+1] = r
+		}
+	}
+	n, m = len(board), len(board[1])
+	board[0] = make([]rune, m)
+	board[n-1] = make([]rune, m)
+	for i := 0; i < n; i++ {
+		board[i][0] = wall
+		board[i][m-1] = wall
+	}
+	for i := 0; i < m; i++ {
+		board[0][i] = wall
+		board[n-1][i] = wall
+	}
+	return
+}
+
 type DisjointSet struct {
 	arr []int
 }
